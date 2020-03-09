@@ -1,0 +1,171 @@
+\documentclass[a4paper,11pt]{report}
+\usepackage{amssymb}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% !TEX encoding = UTF-8 Unicode
+\usepackage{UFMG_style}
+%\usepackage{oxthesis}
+\usepackage{etexcmds,epsfig}
+\usepackage{amssymb, amsmath, multicol, rotating, xcolor} 
+\usepackage{graphicx, balance}
+\usepackage{subfigure}% Support for small, `sub' figures and tables
+\usepackage{ccaption}
+\usepackage{amsfonts}  %% 100
+\usepackage{graphics}  %% 100
+\DeclareGraphicsExtensions{.pdf,.svg,.eps,.png,.jpg,.jpeg}
+\usepackage[portuges]{varioref}
+\usepackage[utf8]{inputenc}
+\usepackage{url} 
+\usepackage[T1]{fontenc}
+\usepackage{dirtytalk} % quotations
+\usepackage{makeidx}
+\usepackage[portuges,brazilian]{babel}
+\usepackage{hyphenat}
+\usepackage{tabularx,balance,indentfirst}
+\setcounter{MaxMatrixCols}{10}
+\usepackage{floatrow}
+\usepackage{chngcntr}
+\usepackage{microtype}
+%\usepackage[xindy,toc,acronym]{glossaries}
+%%%%%%%%
+\makeatletter
+\let\X@old@caption\caption
+\def\X@caption@minusone{\expandafter\advance\csname c@\@captype\endcsname-1 }
+\def\X@caption@br[#1]#2{\X@old@caption[#1]{#2}\X@caption@minusone}
+\def\X@caption@nobr#1{\X@old@caption{#1}\X@caption@minusone}
+\def\caption{\@ifnextchar[\X@caption@br\X@caption@nobr}
+\makeatother
+%%%%%%%%
+% substitui Verbatim
+\usepackage{listings}
+\lstset{numbers=left,commentstyle=\color{green},keywordstyle=\color{blue}}
+\usepackage{inconsolata}
+\lstset{
+    language=matlab, %% Troque para PHP, C, Java, etc... bash é o padrão
+    basicstyle=\ttfamily\small,
+    numberstyle=\footnotesize,
+    numbers=left,
+    %backgroundcolor=\color{gray!1}, %estava 10
+    frame=single,
+    tabsize=2,
+    rulecolor=\color{black!30},
+    title=\lstname,
+    escapeinside={\%*}{*)},
+    breaklines=true,
+    breakatwhitespace=true,
+    framextopmargin=2pt,
+    framexbottommargin=2pt,
+    extendedchars=false,
+    showstringspaces=false,
+    inputpath=./programas/,
+    %inputencoding=utf8
+}
+%------------------------------------------------------%
+\newtheorem{teorema}{Teorema}
+\newtheorem{algoritmo}{Algoritmo}
+\newtheorem{axioma}{Axioma}
+\newtheorem{caso}{Caso}
+\newtheorem{conclusão}{Conclusão}
+\newtheorem{condição}{Condição}
+\newtheorem{conjectura}{Conjectura}
+\newtheorem{corol\'{a}rio}{Corol\'{a}rio}
+\newtheorem{crit \'{e}rio}{Crit \'{e}rio}
+\newtheorem{definicao}{Definicao}
+\newtheorem{definição}{Definição}
+\newtheorem{exemplo}{Exemplo}
+\newtheorem{exerc\'{\i}cio}{Exerc\'{\i}cio}
+\newtheorem{lema}{Lema}
+\newtheorem{nota\c{c}\~{a}o}{Nota\c{c}\~{a}o}
+\newtheorem{observa\c{c}\~{a}o}{Observa\c{c}\~{a}o}
+\newtheorem{problema}{Problema}
+\newtheorem{proposi\c{c}\~{a}o}{Proposi\c{c}\~{a}o}
+\newtheorem{solu\c{c}\~{a}o}{Solu\c{c}\~{a}o}
+\newtheorem{resumo}{Resumo}
+\newenvironment{prova}[1][Prova]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\renewcommand{\baselinestretch}{1.2}  
+\setcounter{tocdepth}{2} 
+\newcommand{\bref}[1]{\mbox{(\ref{#1})}}
+%-------------------------------------------------------%
+\counterwithin{figure}{chapter}
+\counterwithin{exemplo}{chapter}
+\counterwithin{definição}{chapter}
+\counterwithin{algoritmo}{chapter}
+
+
+% If dedication remove the next line comment...
+%\dedication{Para ...}
+
+\college{Minha Unidade}  
+\advisor{Orientador: Prof.  Fulano de Tal, UFMG \\
+Supervisor: Eng. John Doe, Empresa}
+\fulfilment{Relatório de Estágio Técnico do Projeto PRAE/COLTEC/UFMG} 
+
+%\fulfilment{Monografia submetida à banca examinadora designada pelo Colegiado Didático do Curso de Graduação em Engenharia de Controle e Automação da Universidade Federal de Minas Gerais, como parte dos requisitos para aprovação na disciplina Projeto Final de Curso II} 
+
+\submitterm{Novembro,}
+\submityear{2017}
+
+%\draft
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INICIO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% Título...
+\title{Título com assunto e proposta}
+\author{Autor Nome Sobrenome}
+\maketitle
+
+%\input{capa}
+
+\pagenumbering{roman} % Use Roman numbers for the frontmatter pages.
+
+\begin{abstract}
+%\input{abstract}
+\input{resumo}
+\end{abstract}
+
+\tableofcontents
+\listoffigures
+
+\begin{acknowledgements}
+\input{agradecimentos}	 % File with my agradecimentos.tex   (same folder of master)
+\end{acknowledgements}
+
+\pagenumbering{arabic} % Use arabic numbers for the mainmatter.
+
+% Subpastas para cada capítulo
+\input{cap1/cap1.tex}
+
+\input{cap2/cap2.tex}
+
+\input{cap3/cap3.tex}
+
+\input{cap4/cap4.tex}
+
+\input{cap5/cap5.tex}
+
+\input{cap6/cap6.tex}
+
+%-------------------------------------------------------------
+\appendix %-----------------------------------------------
+
+\input{ApendiceA/ApendiceA.tex} 
+
+
+%---------------------------------------------------------------------------
+% Before the reference page must be inserted a \pagebreak to ensure that
+% the references are place in TOC (Table of Contents) with the right page number.
+% A \addcontentsline command must be used to insert the References title
+% in the TOC.
+%---------------------------------------------------------------------------
+
+\addcontentsline{toc}{chapter}{Referências}
+
+%\bibliographystyle{abnt-alf}
+\bibliographystyle{alpha}
+\bibliography{ref,ref_books}
+%% NÃO pode haver espaço entre os databases acima!!! (:-/
+
+\end{document}
